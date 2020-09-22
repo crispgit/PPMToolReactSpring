@@ -12,7 +12,6 @@ class Dashboard extends Component {
   }
 
   render() {
-
     const { projects } = this.props.project;
     return (
       

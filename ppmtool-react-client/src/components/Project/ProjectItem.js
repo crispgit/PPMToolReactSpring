@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-export default class ProjectItem extends Component {
+class ProjectItem extends Component {
   render() {
-
     const { project } = this.props;
     return (
       <div className="container">
@@ -15,18 +15,18 @@ export default class ProjectItem extends Component {
               <h3>{project.projectName}</h3>
               <p>{project.description}</p>
             </div>
-           <div className="col-md-4 d-none d-lg-block">
+            <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">
                 <a href="#">
                   <li className="list-group-item board">
                     <i className="fa fa-flag-checkered pr-1"> Project Board </i>
                   </li>
                 </a>
-                <a href="#">
+                <Link to={`/updateProject/${project.projectIdentifier}`}>
                   <li className="list-group-item update">
                     <i className="fa fa-edit pr-1"> Update Project Info</i>
                   </li>
-                </a>
+                </Link>
                 <a href="">
                   <li className="list-group-item delete">
                     <i className="fa fa-minus-circle pr-1"> Delete Project</i>
@@ -37,7 +37,8 @@ export default class ProjectItem extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
+export default ProjectItem;
