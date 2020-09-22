@@ -72,6 +72,16 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <!-- MYSQL -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <!-- Spring Boot JDBC -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
