@@ -67,7 +67,6 @@ public class ProjectService {
 
         if(project == null){
             throw new ProjectIdException("Project ID '"+projectId+"' does not exist");
-
         }
 
         if(!project.getProjectLeader().equals(username)){
@@ -83,5 +82,6 @@ public class ProjectService {
     public void deleteProjectByIdentifier(String projectid, String username){
         projectRepository.delete(findProjectByIdentifier(projectid, username));
     }
+
 
 }
