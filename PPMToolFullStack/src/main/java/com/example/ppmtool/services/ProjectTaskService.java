@@ -23,33 +23,24 @@ public class ProjectTaskService {
     @Autowired
     private ProjectRepository projectRepository;
 
-
     public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask){
 
         try {
-            //PTs to be added to a specific project, project != null, BL exists
             Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
-            //set the bl to pt
             projectTask.setBacklog(backlog);
-            //we want our project sequence to be like this: IDPRO-1  IDPRO-2  ...100 101
             Integer BacklogSequence = backlog.getPTSequence();
-            // Update the BL SEQUENCE
             BacklogSequence++;
 
             backlog.setPTSequence(BacklogSequence);
 
-            //Add Sequence to Project Task
             projectTask.setProjectSequence(backlog.getProjectIdentifier()+"-"+BacklogSequence);
             projectTask.setProjectIdentifier(projectIdentifier);
 
-            //INITIAL priority when priority null
-
-            //INITIAL status when status is null
             if(projectTask.getStatus()==""|| projectTask.getStatus()==null){
                 projectTask.setStatus("TO_DO");
             }
 
-            if(projectTask.getPriority()==null){ //In the future we need projectTask.getPriority()== 0 to handle the form
+            if(projectTask.getPriority()==0||projectTask.getPriority()==null){
                 projectTask.setPriority(3);
             }
 
@@ -87,11 +78,9 @@ public class ProjectTaskService {
             throw new ProjectNotFoundException("Project Task '"+pt_id+"' not found");
         }
 
-        //make sure that the backlog/project id in the path corresponds to the right project
         if(!projectTask.getProjectIdentifier().equals(backlog_id)){
             throw new ProjectNotFoundException("Project Task '"+pt_id+"' does not exist in project: '"+backlog_id);
         }
-
 
         return projectTask;
     }
